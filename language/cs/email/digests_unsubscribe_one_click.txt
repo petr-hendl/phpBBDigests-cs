@@ -1,0 +1,7 @@
+Milá/milý {{ USERNAME }},
+
+Jak jste si přál(a), už nebudete dostávat žádné další souhrny příspěvků z fóra {{ FORUM_NAME }}.
+
+S pozdravem,
+
+{{ FORUM_NAME }} - administrátor

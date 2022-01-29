@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Digests
-* @copyright (c) 2019 Mark D. Hamill (mark@phpbbservices.com)
+* @copyright (c) 2021 Mark D. Hamill (mark@phpbbservices.com)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -16,6 +16,23 @@ if (empty($lang) || !is_array($lang))
 {
 	$lang = array();
 }
+
+
+// DEVELOPERS PLEASE NOTE
+//
+// All language files should use UTF-8 as their encoding and the files must not contain a BOM.
+//
+// Placeholders can now contain order information, e.g. instead of
+// 'Page %s of %s' you can (and should) write 'Page %1$s of %2$s', this allows
+// translators to re-order the output of data while ensuring it remains correct
+//
+// You do not need this where single placeholders are used, e.g. 'Message %d' is fine
+// equally where a string contains only two placeholders which are used to wrap text
+// in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
+//
+// Some characters you may want to copy&paste:
+// ’ » “ ” …
+//
 
 $lang = array_merge($lang, array(
 	'PLURAL_RULE'						=> 8,
@@ -34,14 +51,22 @@ $lang = array_merge($lang, array(
 	'DIGESTS_COUNT_LIMIT_EXPLAIN'		=> 'Pokud chceze omezit počet příspěvků v souhrnu, vložte číslo větší než nula.',
 	'DIGESTS_DAILY'						=> 'Denně',
 	'DIGESTS_DATE'						=> 'Datum',
-	'DIGESTS_DELIMITER'					=> ' :: ', // Used to help show the hierarchy of forum names from the index on down
+	'DIGESTS_DELIMITER'					=> ' &#8249; ', // Used to help show the hierarchy of forum names from the index on down
 	'DIGESTS_DISABLED_MESSAGE'			=> 'Pokud chcete zaktivovat tato políčka, vyberte sekci "Základní" a vyberte typ souhrnu.',
-	'DIGESTS_DISCLAIMER'				=> 'Zasílání souhrnu e-mailem můžete vypnout nebo upravit nastavení v <a href="%1$sucp.%3$s">Uživatelském panelu</a>. Máte-li nějaké dotazy či připomínky k souhrnům, obraťe se na <a href="mailto:%4$s">správce fóra %2$s</a>.',
-	'DIGESTS_EXPLANATION'				=> 'Souhrny e-mailem jsou emailové souhrny příspěvků z fóra, zasílané v pravidelných intervalech. Mohou být zasílány denně, týdně či měsíčně ve vámi zadanou hodinu. Můžete si vybrat fóra, která mají být v souhrnu zahrnuta nebo si nechat zasalat příspěvky ze všech fór, do kterých máte přístup. Můžete samozřejmě kdykoliv zasílání zrušit. Mnoho uživatelů shledává souhrny velmi užitečnými. Určitě je také vyzkoušejte!',
+	'DIGESTS_DISCLAIMER_HTML'			=> '<p><a href="%5$s">Okamžité odhlášení</a></p><p>Zasílání souhrnu e-mailem můžete také vypnout nebo upravit nastavení v <a href="%1$sucp.%3$s">Uživatelském panelu</a>.</p><p>Máte-li nějaké dotazy či připomínky k souhrnům, obraťe se na <a href="mailto:%4$s">správce fóra %2$s</a>.</p>',
+    'DIGESTS_DISCLAIMER_TEXT'			=> 'Okamžité odhlášení: %5$s
+    
+Zasílání souhrnu e-mailem můžete také vypnout nebo upravit nastavení v Uživatelském panelu.
+    
+Máte-li nějaké dotazy či připomínky k souhrnům, obraťe se na správce fóra: %4$s.',
+    'DIGESTS_DISCLAIMER'				=> 'Zasílání souhrnu e-mailem můžete vypnout nebo upravit nastavení v <a href="%1$sucp.%3$s">Uživatelském panelu</a>. Máte-li nějaké dotazy či připomínky k souhrnům, obraťe se na <a href="mailto:%4$s">správce fóra %2$s</a>.',
+    'DIGESTS_EXPLANATION'				=> 'Souhrny e-mailem jsou emailové souhrny příspěvků z fóra, zasílané v pravidelných intervalech. Mohou být zasílány denně, týdně či měsíčně ve vámi zadanou hodinu. Můžete si vybrat fóra, která mají být v souhrnu zahrnuta nebo si nechat zasalat příspěvky ze všech fór, do kterých máte přístup. Můžete samozřejmě kdykoliv zasílání zrušit. Mnoho uživatelů shledává souhrny velmi užitečnými. Určitě je také vyzkoušejte!',
 	'DIGESTS_FILTER_ERROR'				=> 'Rozesílání souhrnů bylo zavoláno s neplatným user_digest_filter_type = %s',
 	'DIGESTS_FILTER_FOES'				=> 'Neposílat příspěvky mých nepřátel',
 	'DIGESTS_FILTER_TYPE'				=> 'Typ příspěvků v souhrnu',
-	'DIGESTS_FORMAT_HTML'				=> 'Stylový',
+    'DIGESTS_FOREIGN_LINK_REMOVED'		=> '[ Externí odkaz odstraněn. Pro zobrazení odkazu klikněte na odkaz příspěvku nebo tématu. ]',
+    'DIGESTS_FOREIGN_LINK_REMOVED_TEXT'	=> '[ Externí odkaz odstraněn. Pro zobrazení odkazu klikněte na odkaz tématu. ]',
+    'DIGESTS_FORMAT_HTML'				=> 'Stylový',
 	'DIGESTS_FORMAT_HTML_EXPLAIN'		=> 'Stylový obsahuje formátování, BBCode a podpisy (pokud jsou povoleny). Pokud to váš emailový klient umožňuje, použije se styl vzhledu fóra.',
 	'DIGESTS_FORMAT_HTML_CLASSIC'		=> 'Stylový s tabulkami',
 	'DIGESTS_FORMAT_HTML_CLASSIC_EXPLAIN'	=> 'Podobně jako stylový, jen témata a soukromé zprávy jsou zobrazeny v tabulkách',
@@ -58,7 +83,8 @@ $lang = array_merge($lang, array(
 	'DIGESTS_FREQUENCY_EXPLAIN'			=> 'Den pro zasílání týdenních souhrnů: %s. Měsíční se posílají vždy prvního v měsíci. Pro určení dne v týdnu se používá GMT čas (nulový posun).',
 	'DIGESTS_FREQUENCY_SHORT'			=> 'Typ souhrnu',
 	'DIGESTS_HOURS_ABBREVIATION' 		=> ' hod',	// see: http://www.scienceeditingexperts.com/which-is-the-correct-abbreviation-for-hours-2h-2-h-2hs-2-hs-2hrs-or-2-hrs, DIGESTS_AM and DIGESTS_PM are used instead if specified in user_dateformat
-	'DIGESTS_INTRODUCTION' 				=> 'Zde je souhrn nejnovějších příspěvků zaslaných do fóra %s. <em>Neodpovídejte</em> na tento email! Chcete-li reagovat na témata, příspěvky nebo soukromé zprávy v tomto emailu, zavítejte na fórum a zapojte se do diskuze! (Aby se souhrn zobrazil pěkně, nezapomeňte povolit stahování vzdáleného obsahu v emailovém programu.)',
+    'DIGESTS_INSTALL_REQUIREMENTS'		=> 'Aby bylo možné toto rozšíření nainstalovat, vaše verze PHP musí být &gt; 3.3.0 a &lt; 4.0. Nejdřív prosím vyřešte tento požadavek a pak se o instalaci pokuste znovu.',
+    'DIGESTS_INTRODUCTION' 				=> 'Zde je souhrn nejnovějších příspěvků zaslaných do fóra %s. <em>Neodpovídejte</em> na tento email! Chcete-li reagovat na témata, příspěvky nebo soukromé zprávy v tomto emailu, zavítejte na fórum a zapojte se do diskuze! (Aby se souhrn zobrazil pěkně, nezapomeňte povolit stahování vzdáleného obsahu v emailovém programu.)',
 	'DIGESTS_JUMP_TO_MSG'				=> 'Id zprávy',
 	'DIGESTS_JUMP_TO_POST'				=> 'Id příspěvku',
 	'DIGESTS_LASTVISIT_RESET'			=> 'Označit čas zaslání souhrnu jako datum mé poslední návštěvy na fóru',
@@ -79,13 +105,15 @@ $lang = array_merge($lang, array(
 	'DIGESTS_NEW_POSTS_ONLY_EXPLAIN'	=> 'Toto odfiltruje všechny příspěvky, které byly zaslány před časem vaší poslední návštěvy fóra. Pokud navštěvujete fórum často a čtete většinu příspěvků, zamezíte zahrnutí vámi již přečtených příspěvků. Můžete tím ale také vynechat příspěvky, které jste ještě nečetl.',
 	'DIGESTS_NO_BOOKMARKED_POSTS'		=> 'V záložkách nejsou žádné nové příspěvky.',
 	'DIGESTS_NO_CONSTRAINT'				=> 'Bez omezení',
-	'DIGESTS_NO_FORUMS_CHECKED' 		=> 'Musíte zaškrtnout alespoň jedno fórum',
+    'DIGESTS_NO_FORUMS_AVAILABLE'		=> 'Nemáte přístup k žádným fórům.',
+    'DIGESTS_NO_FORUMS_CHECKED' 		=> 'Musíte zaškrtnout alespoň jedno fórum',
 	'DIGESTS_NO_LIMIT'					=> 'Bez limitu',
 	'DIGESTS_NO_POSTS'					=> 'Nejsou žádné nové příspěvky.',
 	'DIGESTS_NO_POST_TEXT'				=> 'Vůbec nezobrazovat text příspěvků',
 	'DIGESTS_NO_PRIVATE_MESSAGES'		=> 'Nemáte žádné nové ani nepřečtené soukromé zprávy.',
 	'DIGESTS_NO_TIMEZONE'				=> 'Než budou zasílány souhrny, je třeba v profilu <a href="%s">nastavit časovou zónu</a>.',
-	'DIGESTS_NONE'						=> 'Žádné (neposílat)',
+    'DIGESTS_NO_FILES'					=> '<em>Žádné soubory</em>',
+    'DIGESTS_NONE'						=> 'Žádné (neposílat)',
 	'DIGESTS_ON'						=> 'dne',
 	'DIGESTS_OPEN_QUOTE'				=> '&ldquo;',
 	'DIGESTS_OPEN_QUOTE_TEXT'			=> '"',
@@ -141,7 +169,9 @@ $lang = array_merge($lang, array(
 	'DIGESTS_TOC_EXPLAIN'				=> 'Je-li vaše fórum hodně aktivní, můžete chtít zahrnout obsah (rejstřík příspěvků). Ve Stylovém formátu zahrnuje obsah i odkazy, které vám umožní rovnou skočit na příspěvek nebo soukromou zprávu.',
 	'DIGESTS_UNKNOWN'					=> 'Neznámý',
 	'DIGESTS_UNREAD'					=> 'Nepřečtené',
-	'DIGESTS_UPDATED'					=> 'Vaše nastavení pro Souhrny e-mailem bylo uloženo.',
+    'DIGESTS_UNSUBSCRIBE_FAILURE'		=> 'Je nám líto, ale nepodařilo se odhlásit vás z rozesílání souhrnů.',
+    'DIGESTS_UNSUBSCRIBE_SUCCESS'		=> 'Byl jste odhlášen z odběr dalších souhrnů.',
+    'DIGESTS_UPDATED'					=> 'Vaše nastavení pro Souhrny e-mailem bylo uloženo.',
 	'DIGESTS_USE_BOOKMARKS'				=> 'Jen témata v záložkách',
 	'DIGESTS_WEEKDAY' 					=> 'Neděle,Pondělí,Úterý,Středa,Čtvrtek,Pátek,Sobota',
 	'DIGESTS_WEEKLY'					=> 'Týdně',

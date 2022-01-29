@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Digests
-* @copyright (c) 2019 Mark D. Hamill (mark@phpbbservices.com)
+* @copyright (c) 2021 Mark D. Hamill (mark@phpbbservices.com)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -16,6 +16,22 @@ if (empty($lang) || !is_array($lang))
 {
 	$lang = array();
 }
+
+// DEVELOPERS PLEASE NOTE
+//
+// All language files should use UTF-8 as their encoding and the files must not contain a BOM.
+//
+// Placeholders can now contain order information, e.g. instead of
+// 'Page %s of %s' you can (and should) write 'Page %1$s of %2$s', this allows
+// translators to re-order the output of data while ensuring it remains correct
+//
+// You do not need this where single placeholders are used, e.g. 'Message %d' is fine
+// equally where a string contains only two placeholders which are used to wrap text
+// in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
+//
+// Some characters you may want to copy&paste:
+// ’ » “ ” …
+//
 
 $lang = array_merge($lang, array(
 	'DIGESTS_WEEKDAY' 					=> 'Neděle,Pondělí,Úterý,Středa,Čtvrtek,Pátek,Sobota',
@@ -46,14 +62,18 @@ $lang = array_merge($lang, array(
 	'DIGESTS_BALANCE_LOAD'									=> 'Vyvážení zátěže',
 	'DIGESTS_BALANCE_HOURS'									=> 'Vyvážit tyto hodiny',
 	'DIGESTS_BASED_ON'										=> '(Vztaženo k UTC%+d)',
-	'DIGESTS_COLLAPSE'										=> 'Sbalit',
+    'DIGESTS_CLEAR_CACHE_NOT_RUN'							=> 'Uchované souhrny nebyly smazány, protože tato možnost nebyla zvolena.',
+    'DIGESTS_COLLAPSE'										=> 'Sbalit',
 	'DIGESTS_COMMA'											=> ', ',		// Used  in salutations and to separate items in lists
 	'DIGESTS_CREATE_DIRECTORY_ERROR'						=> 'Nepodařilo se vytvořit složku "%s". Může to být způsobeno nedostatečnými právy. Práva nadřazené složky by měla umožnit zapisování (777 na unixových systémech).',
 	'DIGESTS_CURRENT_VERSION_INFO'							=> 'Vaše verze je <strong>%s</strong>.',
 	'DIGESTS_CUSTOM_STYLESHEET_PATH'						=> 'Cesta k vlastnímu CSS stylu',
 	'DIGESTS_CUSTOM_STYLESHEET_PATH_EXPLAIN'				=> 'Toto nastavení je použito jen pokud je nastavena volba "Povolit vlastní CSS styl". Pokud je nastavena, styl bude použit pro všechny souhrny ve Stylovaném formátu. Cesta by měla být relativní k složce stylů a zpravidla by se měla nacházet ve složce s tématy. Upozornění: tento styl musíte vytvořit a umístit na server. Příklad: prosilver/theme/digest_stylesheet.css. Více informací o vytváření CSS stylů např. na <a href="http://www.w3schools.com/css/">W3 Schools</a>.',
-	'DIGESTS_DEFAULT'										=> 'Objednat pomocí výchozích nastavení',
-	'DIGESTS_DAILY_ONLY'									=> 'Jen denní souhrny',
+    'DIGESTS_DEBUG'											=> 'Povolit debugování souhrnů',
+    'DIGESTS_DEBUG_EXPLAIN'									=> 'Pro potřeby hledání chyb. Budou vypisovány určité klíčové informace, jako například databázové dotazy, do administrátorského protokolu. K porozumění těmto informacím jsou zapotřebí vývojářské znalosti.',
+    'DIGESTS_DEFAULT'										=> 'Objednat pouze označené řádky s výchozími nastaveními',
+    'DIGESTS_DEFAULT_SHORT'									=> 'Objednat pomocí výchozích nastavení',
+    'DIGESTS_DAILY_ONLY'									=> 'Jen denní souhrny',
 	'DIGESTS_ENABLE_AUTO_SUBSCRIPTIONS'						=> 'Automaticky zapnout souhrny novým uživatelům',
 	'DIGESTS_ENABLE_AUTO_SUBSCRIPTIONS_EXPLAIN'				=> 'Pokud chcete, aby noví uživatelé automaticky dostávali souhrny, zvolte "Ano". Jako výchozí nastavení se použijí výchozí nastavení (to se nastavuje v sekci "Výchozí nastavení uživatelů" níže). Tímto se ale nenastaví zasílání souhrnů stávajícím uživatelům.',
 	'DIGESTS_ENABLE_CUSTOM_STYLESHEET'						=> 'Povolit vlastní CSS styl',
@@ -74,7 +94,7 @@ $lang = array_merge($lang, array(
 	'DIGESTS_HAS_UNSUBSCRIBED'								=> 'Odhlásil odběr',
 	'DIGESTS_HOUR_SENT'										=> 'Hodina zaslání (vztaženo k UTC%+d)',
 	'DIGESTS_HOUR_SENT_GMT'									=> 'Výchozí hodina zasílání (UTC)',
-	'DIGESTS_IGNORE'										=> 'Vynechat z hromadné akce',
+	'DIGESTS_IGNORE'										=> 'Vynechat označené řádky',
 	'DIGESTS_ILLOGICAL_DATE'								=> 'Vaše datum simulace je nesmyslné, jako třeba 31. února. Prosím opravte a odešlete znovu.',
 	'DIGESTS_INCLUDE_ADMINS'								=> 'Zahrnout administrátory',
 	'DIGESTS_INCLUDE_ADMINS_EXPLAIN'						=> 'Tímto přihlásíte nebo odhlásíte z odběrů i administrátory navíc k normálním uživatelům.',
@@ -89,7 +109,6 @@ $lang = array_merge($lang, array(
 	'DIGESTS_LOWERCASE_DIGEST_TYPE'							=> 'Typ souhrnů s malým písmem',
 	'DIGESTS_LOWERCASE_DIGEST_TYPE_EXPLAIN'					=> 'V angličtině je nadpis souhrnů něco jako &ldquo;Moje fórum - Denní Souhrn&rdquo; (&ldquo;Denní&rdquo; a &ldquo;Souhrn&rdquo; s velkými písmeny na začátku). V některých jazycích je &ldquo;Denní Souhrn&rdquo; logicky na začátku nadpisu. Nastavíte-li na Ano, typ souhrn se uvede jako &ldquo;Souhrn denní z mého fóra&rdquo;, s malým prvním písmenem v názvu fóra.',
 	'DIGESTS_MAIL_FREQUENCY' 								=> 'Frekvence zasílání',
-	'DIGESTS_MAILER_NOT_RUN'								=> 'Rozeslání mailem neproběhlo, protože nebyl povolen.',
 	'DIGESTS_MAILER_RAN_SUCCESSFULLY'						=> 'Rozesílání emailů proběhlo úspěšně.',
 	'DIGESTS_MAILER_RAN_WITH_ERROR'							=> 'Během rozesílání emailů došlo k chybě. Jeden nebo více souhrnů bylo úspěšně vytvořeno. Administrační log nebo log chyb phpBB by měl obsahovat více informací.',
 	'DIGESTS_MAILER_SPOOLED'								=> 'Všechny souhrny vytvořené pro tento den a hodinu byly uloženy do složky store/phpbbservices/digests.',
@@ -99,7 +118,8 @@ $lang = array_merge($lang, array(
 	'DIGESTS_MAX_CRON_HOURS_EXPLAIN'						=> 'Nastavte na 0 (nulu), aby se zpracovaly všechny zprávy pro všeechny hodiny ve frontě. Ovšem pokud máte <strong>sdílený hosting</strong>, běh rozesílače může překročit systémový limit zdrojů a vyvolat chybu. To se může stát, pokud máte hodně adresátů a malý provoz na fóru. Nastavení <a href="https://wiki.phpbb.com/PhpBB3.1/RFC/Modular_cron#Use_system_cron">systemového cronu</a> je nejjednodušší způsob jak tento problém minimalizovat a taky zajistí, že budou souhrny chodit včas.',
 	'DIGESTS_MAX_ITEMS'										=> 'Maximální počet příspěvků v jakémkoliv souhrnu',
 	'DIGESTS_MAX_ITEMS_EXPLAIN'								=> 'Z důvodu zatížení serveru můžete chtít nastavit maximální počet příspěvků pro jakýkoliv souhrn. Nastavíte-li 0 (nulu), nebude se počet nijak omezovat. Můžete použít jakékoliv celé číslo. Příspěvky jsou dále omezeny frekvencí souhrnu (denně, týdně nebo měsíčně) a dalšími kritérii, která si uživatel nastaví.',
-	'DIGESTS_MIGRATE_UNSUPPORTED_VERSION'					=> 'Aktualizace souhrnů na novou verzi (pro phpBB 3.0) je podporováno pro verzi 2.2.6 a novější. Máte verzi %s. Rozšížení nemůže být aktualizováno ani instalováno. Pomoc naleznete na diskuzním fóru tohoto rozšíření na phpbb.com.',
+    'DIGESTS_MAILER_RESET' 									=> 'Čas posledního rozesílání emailů byl anulován',
+    'DIGESTS_MIGRATE_UNSUPPORTED_VERSION'					=> 'Aktualizace souhrnů na novou verzi (pro phpBB 3.0) je podporováno pro verzi 2.2.6 a novější. Máte verzi %s. Rozšížení nemůže být aktualizováno ani instalováno. Pomoc naleznete na diskuzním fóru tohoto rozšíření na phpbb.com.',
 	'DIGESTS_MIN_POPULARITY_SIZE'							=> 'Minimální oblíbenost tématu',
 	'DIGESTS_MIN_POPULARITY_SIZE_EXPLAIN'					=> 'Toto nastavuje minimální počet příspěvků denně potřebných proto, aby se téma považovalo za oblíbené. Uživatelé si nemohou nastavit hodnotu nižší než je zde uvedená hodnota. Hodnota je aplikována pouze pro odběratele s frekvencí den, týden nebo měsíc, aby odrážela oblíbenost v posledním období.',
 	'DIGESTS_MONTHLY_ONLY'									=> 'Jen měsíční souhrn',
@@ -122,10 +142,9 @@ $lang = array_merge($lang, array(
 	'DIGESTS_REPLY_TO_EMAIL_ADDRESS_EXPLAIN'				=> 'Když uživatelé obdrží souhrn, tato adresa se objeví v poli "Odpovědět" (Reply-to). Pokud necháte pole prázdné, použije se email uvedený jako kontaktní adresa fóra. Buďe opatrní, pokud zvolíte email s jinou doménou, než je adresa vašeho fóra - některé emailové servry mohou souhrn vyhodnotit jako spam.',
 	'DIGESTS_RESET_CRON_RUN_TIME'							=> 'Vymazat frontu rozesílání',
 	'DIGESTS_RESET_CRON_RUN_TIME_EXPLAIN'					=> 'Po vymazání se vyprázdní fronta všech připravených neodeslaných souhrnů a další souhrny se vytvoří pouze pro aktuální hodinu. Vymazání může být užitečné, když se ve frontě nahromadí velké množství souhrnů, které nebyly rozeslány, protože se nespustil systémový cron, např. po testování.',
-	'DIGESTS_RUN_TEST'										=> 'Spustit rozesílač emailů',
 	'DIGESTS_RUN_TEST_CLEAR_SPOOL'							=> 'Smazat vyrovnávací paměť ve složce store/phpbbservices/digests',
 	'DIGESTS_RUN_TEST_CLEAR_SPOOL_ERROR'					=> 'Nebylo možné smazat všechny soubory ve složce store/phpbbservices/digests. Důvodem by mohla být práva k souborům nebo byla smazána rodičovská složka. Práva by měla umožnit zápis do složky pro kohokoliv (777 na unixových systémech).',
-	'DIGESTS_RUN_TEST_CLEAR_SPOOL_EXPLAIN'					=> 'Je-li povoleno, všechny soubory v store/phpbbservices/digests budou smazány, než se do nich budou vytvářet nové souhrny. Mazání můžete pustit i samostatně bez rozesílání emailů.',
+	'DIGESTS_RUN_TEST_CLEAR_SPOOL_EXPLAIN'					=> 'Je-li povoleno, všechny soubory v této složce budou smazány, než se do nich budou vytvářet nové souhrny. Mazání můžete pustit i samostatně bez rozesílání emailů.',
 	'DIGESTS_RUN_TEST_DATE_HOUR'							=> 'Den a hodina simulace',
 	'DIGESTS_RUN_TEST_DATE_HOUR_EXPLAIN'					=> 'Použijte prvek pro výběr dne a hodiny. Datum a čas bude interpretováno podle časové zóny nastavené ve vašem profilu.',
 	'DIGESTS_RUN_TEST_EMAIL_ADDRESS'						=> 'Testovací emailová adresa',
@@ -137,15 +156,16 @@ $lang = array_merge($lang, array(
 	'DIGESTS_SALUTATION_FIELDS'								=> 'Vyberte pole pro pozdrav',
 	'DIGESTS_SALUTATION_FIELDS_EXPLAIN'						=> 'Vložte vlastní pole z uživatelských profilů, která se použijí místo uživatelského jména v pozdravu emailu souhrnu. Pokud nezvolíte žádné pole, použije se uživatelské jméno. Zvolte vlastní pole pomocí označení pole. Více polí oddělte čárkou. <em>Poznámka:</em> Pole musí být typu “Jedno textové pole”. Pokud žádné pole neexistuje anebo pro ně uživatel nevyplnil žádnou hodnotu, použije se uživatelské jméno. Například: "krestni,prijmeni" (pokud jste taková pole vytvořili). V pozdravu se hodnoty polí (je-li jich více) oddělí mezerou.',
 	'DIGESTS_SEARCH_FOR_MEMBER'								=> 'Hledat uživatele',
-	'DIGESTS_SEARCH_FOR_MEMBER_EXPLAIN'						=> 'Vložte celé nebo částečné jméno nebo emailovou adresu, kterou hledáte, a stiskněte Enter. Chcete-li vidět všechny uživatele, nechte pole prázdné. Vyhledávání nerozlišuje velká a malá písmena. <em>Poznámka</em>: Aby se vyhledávalo podle emailu, je třeba v hledání použít znak "@".',
+	'DIGESTS_SEARCH_FOR_MEMBER_EXPLAIN'						=> 'Vložte celé nebo částečné jméno nebo emailovou adresu, kterou hledáte, a stiskněte <strong>Přejít</strong>. Nechcete-li použít tento filtr, nechte pole prázdné. Vyhledávání nerozlišuje velká a malá písmena. <em>Poznámka</em>: Aby se vyhledávalo podle emailu, je třeba v hledání použít znak "@".',
 	'DIGESTS_SELECT_FORUMS_ADMIN_EXPLAIN'					=> 'Seznam fór zahrnuje jen ta fóra, kde má uživatel práva ke čtení. Chcete-li uživateli přidělit práva na fóra, která zde nejsou zobrazena, rozšiřte jejich oprávnění nebo oprávnění jeho skupiny. Ačkoliv zde můžete detailně nastavit, která fóra se uživateli zašlou, nezašle se nic, pokud je formát souhrnů nastaven na &ldquo;Žádný&rdquo;.',
 	'DIGESTS_SHOW'											=> 'Zobrazit',
 	'DIGESTS_SHOW_EMAIL'									=> 'Zobrazit emailovou adresu v logu',
 	'DIGESTS_SHOW_EMAIL_EXPLAIN'							=> 'Pokud povolíte, zobrazí se emailová adresa uživatele v záznamech administrátorského protokolu. To se může hodit při řešení potíží při nastavování či odesílání souhrnů.',
 	'DIGESTS_SHOW_FORUM_PATH'								=> 'Zobrazit fórum i s cestou',
-	'DIGESTS_SHOW_FORUM_PATH_EXPLAIN'						=> 'Je-li povoleno, zobrazí se v souhrnu fórum i s celou hierarchií nadřazených kategorií a fór, například: &ldquo;Kategorie 1 :: Fórum 1 :: Kategorie A :: Fórum B&rdquo;. V opačném případně bude zobrazen pouze název fóra, v tomto případě &ldquo;Forum B&rdquo;.',
+	'DIGESTS_SHOW_FORUM_PATH_EXPLAIN'						=> 'Je-li povoleno, zobrazí se v souhrnu fórum i s celou hierarchií nadřazených kategorií a fór, například: &ldquo;Kategorie 1 &#8249; Fórum 1 &#8249; Kategorie A &#8249; Fórum B&rdquo;. V opačném případně bude zobrazen pouze název fóra, v tomto případě &ldquo;Forum B&rdquo;.',
 	'DIGESTS_SORT_ORDER'									=> 'Třídění',
-	'DIGESTS_STOPPED_SUBSCRIBING'							=> 'Přestal odebírat',
+    'DIGESTS_SORTING_AND_FILTERING'							=> 'Třídění a filtování',
+    'DIGESTS_STOPPED_SUBSCRIBING'							=> 'Přestal odebírat',
 	'DIGESTS_STRIP_TAGS'									=> 'Zakázané HTML značky',
 	'DIGESTS_STRIP_TAGS_EXPLAIN'							=> 'Některé mailove servery mohou emaily odmítnout doručit nebo je vyhodnotí jako spam. Uveďte značky (bez znaků &lt; a &gt;), které se mají vynechat, a oddělte je čárkami. Například &ldquo;video,iframe&rdquo;. Nezakazujte značky jako h1, p nebo div, které jsou potřebné pro rozumné zobrazení souhrnů.',
 	'DIGESTS_SUBSCRIBE_EDITED'								=> 'Vaše nastavení souhrnů byla změněna',
@@ -157,13 +177,16 @@ $lang = array_merge($lang, array(
 	'DIGESTS_SUBSCRIBERS_DAILY'								=> 'Denní odběratelé',
 	'DIGESTS_SUBSCRIBERS_WEEKLY'							=> 'Týdenní odběratelé',
 	'DIGESTS_SUBSCRIBERS_MONTHLY'							=> 'Měsíční odběratelé',
-	'DIGESTS_UNSUBSCRIBE'									=> 'Odhlásit',
+    'DIGESTS_UNLINK_FOREIGN_URLS'							=> 'Odstranit externí URL ze souhrnů',
+    'DIGESTS_UNLINK_FOREIGN_URLS_EXPLAIN'					=> 'Odstraní odkazy vedoucí mimo fórum. Některé emailové systémy označují emaily s externími odkazy jako možný spam, což může vést k jejich přesutí do složky se spamem nebo nedoručení.',
+    'DIGESTS_UNSUBSCRIBE'									=> 'Odhlásit označené řádky',
 	'DIGESTS_UNSUBSCRIBE_SUBJECT'							=> 'Byl jste odhlášen z odebírání souhrnů příspěvků emailem.',
 	'DIGESTS_UNSUBSCRIBED'									=> 'Není přihlášen k odběru',
 	'DIGESTS_USER_DIGESTS_MAX_DISPLAY_WORDS'				=> 'Maximální počet slov zobrazených v příspěvku',
 	'DIGESTS_USER_DIGESTS_MAX_DISPLAY_WORDS_EXPLAIN'		=> 'Chcete-li zobrazit příspěvky celé, zadejte -1. Zadáte-li nulu (0), nezobrazí se text příspěvku vůbec.',
 	'DIGESTS_USER_DIGESTS_PM_MARK_READ'						=> 'Označit soukromou zprávu jako přečtenou, pokud je zaslána v souhrnu',
-	'DIGESTS_USERS_PER_PAGE'								=> 'Uživatelů na stránce',
+    'DIGESTS_NO_USERS_SELECTED'								=> 'Nebyly provedeny žádné změny! Musíte označit alespoň jeden řádek, který chcete upravit.',
+    'DIGESTS_USERS_PER_PAGE'								=> 'Uživatelů na stránce',
 	'DIGESTS_USERS_PER_PAGE_EXPLAIN'						=> 'Tímto nastavením se uvádí, kolik uživatelů uvidí administrátor na jedné stránce v přehledu objednaných souhrnů. Je doporučeno nechat počet na 20. Příliš vysoké číslo může způsobit překročení PHP nastavení max_input_vars a povede k chybě při odesílání stránky.',
 	'DIGESTS_WEEKLY_DIGESTS_DAY'							=> 'Vyberte den v týdnu pro zasílání týdenních přehledů',
 	'DIGESTS_WEEKLY_DIGESTS_DAY_EXPLAIN'					=> 'Den v týdnu je vztažen k GMT (UTC, nulový časový posun). V závislosti na zvolené hodině, odběratelé na západní polokouli mohou dostat týdenní souhrn již předchozí den.',
