@@ -3,7 +3,7 @@
 Czech translation for phpBBDigests
 
 
-Digests is an extension for phpBB 3.2. The extension sends daily, weekly or monthly digests to all subscribed users 
+Digests is an extension for phpBB 3.3. The extension sends daily, weekly or monthly digests to all subscribed users 
 based on their preferences and filter preferences.
 
 Homepage: https://www.phpbbservices.com/digests_wp/
